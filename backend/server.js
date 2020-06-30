@@ -20,6 +20,12 @@ connection.once('open', ()=> {
     console.log("MongoDB database connection established successfully");
 })
 
+const activitiesRouter = require('./routes/activities');
+const usersRouter = require('./routes/users');
+
+app.use('/activities', activitiesRouter);
+app.use('/users', usersRouter);
+
 app.listen(port, () => {
     console.log(`Sever is running on port: ${port}`)
 });
