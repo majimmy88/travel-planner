@@ -1,12 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css"
 
 function App() {
   return (
-    <div className="App">
-      Travel Planner
-    </div>
+    <Router>
+        <NavBar />
+        <br/>
+        <Route path="/" exact component ={ActivitiesList} />
+        <Route path="/edit/:id" component={EditActivity} />
+        <Route path="/create" component={CreateActivty} />
+        <Route path="/user" component={CreateUser} />
+    </Router>
   );
 }
 
