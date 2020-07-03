@@ -3,6 +3,12 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 
+import Navbar from "./components/navbar.component"
+import ActivitiesList from "./components/activities-list.component";
+import EditActivity from "./components/edit-activity.component";
+import CreateActivty from "./components/create-activity.component";
+import CreateUser from "./components/create-user.component";
+
 function App() {
   return (
     <Router>
