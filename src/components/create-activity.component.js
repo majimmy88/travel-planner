@@ -45,7 +45,11 @@ export default class CreateActivity extends Component {
       username: e.target.value
     })
   }
-
+  onChangeLocation(e) {
+    this.setState({
+      location: e.target.value
+    })
+  }
   onChangeDescription(e) {
     this.setState({
       description: e.target.value
@@ -104,6 +108,15 @@ export default class CreateActivity extends Component {
                 })
               }
           </select>
+        </div>
+        <div className="form-group">
+          <label>Location: </label>
+          <input  type="text"
+              required
+              className="form-control"
+              value={this.state.location}
+              onChange={this.onChangeLocation}
+              />
         </div>
         <div className="form-group">
           <label>Description: </label>
