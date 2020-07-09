@@ -3,11 +3,12 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
-export default class CreateExercise extends Component {
+export default class CreateActivity extends Component {
   constructor(props) {
     super(props);
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeLocation= this.onChangeLocation.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeDuration = this.onChangeDuration.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
@@ -15,6 +16,7 @@ export default class CreateExercise extends Component {
 
     this.state = {
       username: '',
+      location: '',
       description: '',
       duration: 0,
       date: new Date(),
@@ -23,7 +25,7 @@ export default class CreateExercise extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/users/')
+    axios.get('http://localhost:5500/users/')
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
@@ -65,16 +67,17 @@ export default class CreateExercise extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const exercise = {
+    const activity = {
       username: this.state.username,
+      location: this.state.location,
       description: this.state.description,
       duration: this.state.duration,
       date: this.state.date
     }
 
-    console.log(exercise);
+    console.log(activity);
 
-    axios.post('http://localhost:5000/exercises/add', exercise)
+    axios.post('http://localhost:5500/activities/add', activity)
       .then(res => console.log(res.data));
 
     window.location = '/';
@@ -83,7 +86,7 @@ export default class CreateExercise extends Component {
   render() {
     return (
     <div>
-      <h3>Create New Exercise Log</h3>
+      <h3>Create New Activity Log</h3>
       <form onSubmit={this.onSubmit}>
         <div className="form-group">
           <label>Username: </label>
@@ -131,7 +134,7 @@ export default class CreateExercise extends Component {
         </div>
 
         <div className="form-group">
-          <input type="submit" value="Create Exercise Log" className="btn btn-primary" />
+          <input type="submit" value="Create Activity Log" className="btn btn-primary" />
         </div>
       </form>
     </div>
