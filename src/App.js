@@ -1,9 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route} from "react-router-dom";
-import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css"
+import { BrowserRouter as Router, Route} from "react-router-dom";
 
-import Navbar from "./components/navbar.component"
+import Navbar from "./components/navbar.component";
 import ActivitiesList from "./components/activities-list.component";
 // import EditActivity from "./components/edit-activity.component";
 // import CreateActivty from "./components/create-activity.component";
@@ -13,7 +12,7 @@ function App() {
   return (
     <Router>
         <div className="container">
-          <NavBar />
+          <Navbar />
           <br/>
           <Route path="/" exact component ={ActivitiesList} />
           {/* <Route path="/edit/:id" component={EditActivity} /> */}
