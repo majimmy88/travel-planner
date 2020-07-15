@@ -19,7 +19,7 @@ export default class ActivitiesList extends Component {
   constructor(props) {
     super(props);
 
-    this.deleteExercise = this.deleteActivity.bind(this)
+    this.deleteActivity = this.deleteActivity.bind(this)
 
     this.state = {activities: []};
   }
