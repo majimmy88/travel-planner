@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
+require('dotenv').config();
 
 const mapStyles = {
-  width: '100%',
-  height: '100%'
+    width: '100%',
+    height: '100%'
 };
-// const API_KEY = `{process.env.API_KEY}`;
+
+const API_KEY = `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
 
 export class MapContainer extends Component {
   render() {
+    console.log(API_KEY);
     return (
       <Map
         google={this.props.google}
@@ -24,5 +27,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: `${process.env.API_KEY}`
+  apiKey: API_KEY
 })(MapContainer);
