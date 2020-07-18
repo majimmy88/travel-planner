@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
-import axios from 'axios';
+// import axios from 'axios';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-    this.state ={
-      key: '',
-    }
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state ={
+  //     key: '',
+  //   }
+  // }
 
   static defaultProps = {
     center: {
@@ -20,24 +20,23 @@ class Map extends Component {
     zoom: 13
   };
 
-  componentDidMount() {
-    axios.get('http://localhost:5500/map/')
-      .then(response =>{
-        this.setState({ key:response.data })
-      })
-      .catch(error=>{
-        console.log(error)
-      })
-  }
+  // componentDidMount() {
+  //   axios.get('http://localhost:5500/map/')
+  //     .then(response =>{
+  //       this.setState({ key:response.data })
+  //     })
+  //     .catch(error=>{
+  //       console.log(error)
+  //     })
+  // }
 
 
   render() {
-    console.log(this.state.key)
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: this.state.key }}
+          bootstrapURLKeys={{ key: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
