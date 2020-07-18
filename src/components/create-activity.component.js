@@ -37,7 +37,6 @@ export default class CreateActivity extends Component {
       .catch((error) => {
         console.log(error);
       })
-
   }
 
   onChangeUsername(e) {

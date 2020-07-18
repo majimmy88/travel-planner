@@ -23,6 +23,13 @@ connection.once('open', ()=> {
 const activitiesRouter = require('./routes/activities');
 const usersRouter = require('./routes/users');
 
+const GM_API_KEY = `${process.env.GOOGLE_MAPS_API_KEY}`
+// console.log(process.env)
+
+app.get('/map', (req, res)=>{
+    res.send(GM_API_KEY)
+})
+
 app.use('/activities', activitiesRouter);
 app.use('/users', usersRouter);
 

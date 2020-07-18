@@ -1,31 +1,55 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
-require('dotenv').config();
+import GoogleMapReact from 'google-map-react';
+import axios from 'axios';
 
-const mapStyles = {
-    width: '100%',
-    height: '100%'
-};
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-const API_KEY = `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
+class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.state ={
+      key: '',
+    }
+  }
 
-export class MapContainer extends Component {
+  static defaultProps = {
+    center: {
+      lat: 37.77,
+      lng: -122.43
+    },
+    zoom: 13
+  };
+
+  componentDidMount() {
+    axios.get('http://localhost:5500/map/')
+      .then(response =>{
+        this.setState({ key:response.data })
+      })
+      .catch(error=>{
+        console.log(error)
+      })
+  }
+
+
   render() {
-    console.log(API_KEY);
+    console.log(this.state.key)
     return (
-      <Map
-        google={this.props.google}
-        zoom={14}
-        style={mapStyles}
-        initialCenter={{
-         lat: 37.77,
-         lng: -122.43
-        }}
-      />
+      // Important! Always set the container height explicitly
+      <div style={{ height: '100vh', width: '100%' }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: this.state.key }}
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}
+        >
+          <AnyReactComponent
+            lat={37.7749}
+            lng={-122.43}
+            text="You are here"
+          />
+        </GoogleMapReact>
+      </div>
     );
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: API_KEY
-})(MapContainer);
+export default Map;
