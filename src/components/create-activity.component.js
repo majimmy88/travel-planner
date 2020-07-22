@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
+import Map from "./map.component";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default class CreateActivity extends Component {
@@ -90,6 +91,7 @@ export default class CreateActivity extends Component {
     return (
     <div>
       <h3>Create New Activity Log</h3>
+      <Map />
       <form onSubmit={this.onSubmit}>
         <div className="form-group">
           <label>Username: </label>
