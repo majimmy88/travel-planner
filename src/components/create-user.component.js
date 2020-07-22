@@ -7,10 +7,27 @@ export default class CreateUser extends Component {
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onDelete = this.onDelete.bind(this);
 
     this.state = {
-      username: ''
+      username: '',
+      users: []
     }
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:5500/users/')
+      .then(response => {
+        if (response.data.length > 0) {
+          this.setState({
+            users: response.data.map(user => user.username),
+            username: response.data[0].username
+          })
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   onChangeUsername(e) {
@@ -36,6 +53,11 @@ export default class CreateUser extends Component {
     })
   }
 
+  onDelete(e) {
+    e.preventDefault();
+    console.log('Should delete user')
+  }
+
   render() {
     return (
       <div>
@@ -52,6 +74,30 @@ export default class CreateUser extends Component {
           </div>
           <div className="form-group">
             <input type="submit" value="Create User" className="btn btn-primary" />
+          </div>
+        </form>
+
+        <h3>Delete User</h3>
+        <form onDelete={this.onDelete}>
+          <div className="form-group">
+            <label>Username: </label>
+            <select ref="userInput"
+              required
+              className="form-control"
+              value={this.state.username}
+              onChange={this.onChangeUsername}>
+              {
+                this.state.users.map(function(user) {
+                  return <option
+                    key={user}
+                    value={user}>{user}
+                    </option>;
+                })
+              }
+          </select>
+          </div>
+          <div className="form-group">
+            <input type="submit" value="Delete User" className="btn btn-primary" />
           </div>
         </form>
       </div>
