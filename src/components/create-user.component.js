@@ -6,11 +6,13 @@ export default class CreateUser extends Component {
     super(props);
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
+    // this.onChangeSavedUsername = this.onChangeSavedUsername.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onDelete = this.onDelete.bind(this);
 
     this.state = {
       username: '',
+      // savedUsername: '',
       users: []
     }
   }
@@ -20,8 +22,7 @@ export default class CreateUser extends Component {
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
-            users: response.data.map(user => user.username),
-            username: response.data[0].username
+            users: response.data.map(user => user.username)
           })
         }
       })
@@ -33,6 +34,12 @@ export default class CreateUser extends Component {
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
+    })
+  }
+
+  onChangeSavedUsername(e){
+    this.setState({
+      savedUsername:e.target.value
     })
   }
 
