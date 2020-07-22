@@ -4,11 +4,11 @@ import axios from 'axios';
 
 const Activity = props => (
   <tr>
-    <td>{props.activity.username}</td>
     <td>{props.activity.location}</td>
     <td>{props.activity.description}</td>
     <td>{props.activity.duration}</td>
     <td>{props.activity.date.substring(0,10)}</td>
+    <td>{props.activity.username}</td>
     <td>
       <Link to={"/edit/"+props.activity._id}>edit</Link> | <a href="#" onClick={() => { props.deleteActivity(props.activity._id) }}>delete</a>
     </td>
@@ -56,11 +56,11 @@ export default class ActivitiesList extends Component {
         <table className="table">
           <thead className="thead-light">
             <tr>
-              <th>Username</th>
               <th>Location</th>
               <th>Description</th>
               <th>Duration</th>
               <th>Date</th>
+              <th>Username</th>
               <th>Actions</th>
             </tr>
           </thead>
