@@ -6,13 +6,13 @@ export default class CreateUser extends Component {
     super(props);
 
     this.onChangeUsername = this.onChangeUsername.bind(this);
-    // this.onChangeSavedUsername = this.onChangeSavedUsername.bind(this);
+    this.onChangeSavedUsername = this.onChangeSavedUsername.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.onDelete = this.onDelete.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
 
     this.state = {
       username: '',
-      // savedUsername: '',
+      savedUsername: '',
       users: []
     }
   }
@@ -60,9 +60,15 @@ export default class CreateUser extends Component {
     })
   }
 
-  onDelete(e) {
-    e.preventDefault();
-    console.log('Should delete user')
+  deleteUser(id) {
+    axios.delete('http://localhost:5500/users/'+id)
+      .then(response => { console.log(response.data)});
+    this.setState({
+      users: this.state.users.filter(el =>el._id !== id)
+    })
+      .catch((error) => {
+        console.log('User was not deleted' + error)
+      })
   }
 
   render() {
@@ -85,14 +91,14 @@ export default class CreateUser extends Component {
         </form>
 
         <h3>Delete User</h3>
-        <form onDelete={this.onDelete}>
+        <form onSubmit={this.deleteUser}>
           <div className="form-group">
             <label>Username: </label>
             <select ref="userInput"
               required
               className="form-control"
-              value={this.state.username}
-              onChange={this.onChangeUsername}>
+              value={this.state.savedUsername}
+              onChange={this.onChangeSavedUsername}>
               {
                 this.state.users.map(function(user) {
                   return <option
