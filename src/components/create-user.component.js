@@ -22,8 +22,9 @@ export default class CreateUser extends Component {
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
-            users: response.data.map(user => user.username)
+            users: response.data
           })
+          console.log(this.state.users)
         }
       })
       .catch((error) => {
@@ -61,14 +62,18 @@ export default class CreateUser extends Component {
   }
 
   deleteUser(id) {
+    // id.preventDefault();
     axios.delete('http://localhost:5500/users/'+id)
-      .then(response => { console.log(response.data)});
+      .then(response => { console.log(response.data)
+    });
+
+    //   .catch((error) => {
+    //     console.log('User was not deleted' + error)
+    // });
+
     this.setState({
       users: this.state.users.filter(el =>el._id !== id)
     })
-      .catch((error) => {
-        console.log('User was not deleted' + error)
-      })
   }
 
   render() {
@@ -102,8 +107,8 @@ export default class CreateUser extends Component {
               {
                 this.state.users.map(function(user) {
                   return <option
-                    key={user}
-                    value={user}>{user}
+                    key={user.username}
+                    value={user}>{user.username}
                     </option>;
                 })
               }
