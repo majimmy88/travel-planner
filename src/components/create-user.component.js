@@ -39,6 +39,7 @@ export default class CreateUser extends Component {
   }
 
   onChangeSavedUsername(e){
+    console.log(e.target.value)
     this.setState({
       savedUsername:e.target.value
     })
@@ -61,18 +62,19 @@ export default class CreateUser extends Component {
     })
   }
 
-  deleteUser(id) {
-    // id.preventDefault();
-    axios.delete('http://localhost:5500/users/'+id)
-      .then(response => { console.log(response.data)
-    });
-
-    //   .catch((error) => {
-    //     console.log('User was not deleted' + error)
-    // });
+  deleteUser(e) {
+    e.preventDefault();
+    let user_id = ''
+    this.state.users.forEach((el) => {
+      if(el.username === this.state.savedUsername){
+        user_id = el._id
+      }
+    })
+    axios.delete('http://localhost:5500/users/'+user_id)
+      .then(response => { console.log(response.data)});
 
     this.setState({
-      users: this.state.users.filter(el =>el._id !== id)
+      users: this.state.users.filter(el => el._id !== user_id)
     })
   }
 
@@ -108,7 +110,7 @@ export default class CreateUser extends Component {
                 this.state.users.map(function(user) {
                   return <option
                     key={user.username}
-                    value={user}>{user.username}
+                    value={user.username}>{user.username}
                     </option>;
                 })
               }
