@@ -61,7 +61,7 @@ export default class EditActivity extends Component {
 
   onChangeLocation(e) {
     this.setState({
-      description: e.target.value
+      location: e.target.value
     })
   }
 
