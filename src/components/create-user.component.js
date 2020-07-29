@@ -63,7 +63,7 @@ export default class CreateUser extends Component {
   }
 
   deleteUser(e) {
-    e.preventDefault();
+    // e.preventDefault();
     let user_id = ''
     this.state.users.forEach((el) => {
       if(el.username === this.state.savedUsername){

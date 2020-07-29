@@ -1,25 +1,70 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
+import isEmpty from 'lodash.isempty';
 
-export default class SearchBox extends React.Component {
-  static propTypes = {
-    placeholder: React.PropTypes.string,
-    onPlacesChanged: React.PropTypes.func
+// components:
+import Marker from './marker';
+
+// examples:
+import GoogleMap from './google-map';
+import SearchBox from './searchbox';
+
+// consts
+import LOS_ANGELES_CENTER from '../const/la_center';
+
+class Searchbox extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mapApiLoaded: false,
+      mapInstance: null,
+      mapApi: null,
+      places: [],
+    };
   }
+
+  apiHasLoaded = (map, maps) => {
+    this.setState({
+      mapApiLoaded: true,
+      mapInstance: map,
+      mapApi: maps,
+    });
+  };
+
+  addPlace = (place) => {
+    this.setState({ places: place });
+  };
+
   render() {
-    return <input ref="input" {...this.props} type="text"/>;
-  }
-  onPlacesChanged = () => {
-    if (this.props.onPlacesChanged) {
-      this.props.onPlacesChanged(this.searchBox.getPlaces());
-    }
-  }
-  componentDidMount() {
-    var input = ReactDOM.findDOMNode(this.refs.input);
-    this.searchBox = new google.maps.places.SearchBox(input);
-    this.searchBox.addListener('places_changed', this.onPlacesChanged);
-  }
-  componentWillUnmount() {
-    google.maps.event.clearInstanceListeners(this.searchBox);
+    const {
+      places, mapApiLoaded, mapInstance, mapApi,
+    } = this.state;
+    return (
+      <>
+        {mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />}
+        <GoogleMap
+          defaultZoom={10}
+          defaultCenter={LOS_ANGELES_CENTER}
+          bootstrapURLKeys={{
+            key: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
+            libraries: ['places', 'geometry'],
+          }}
+          yesIWantToUseGoogleMapApiInternals
+          onGoogleApiLoaded={({ map, maps }) => this.apiHasLoaded(map, maps)}
+        >
+          {!isEmpty(places)
+            && places.map((place) => (
+              <Marker
+                key={place.id}
+                text={place.name}
+                lat={place.geometry.location.lat()}
+                lng={place.geometry.location.lng()}
+              />
+            ))}
+        </GoogleMap>
+      </>
+    );
   }
 }
+
+export default Searchbox;

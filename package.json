@@ -11,12 +11,15 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "google-map-react": "^1.1.7",
+    "lodash.isempty": "^4.4.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "save": "^2.4.0"
+    "save": "^2.4.0",
+    "styled-components": "^5.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
