@@ -1,4 +1,5 @@
-<img width="964" alt="java 8 and prio java 8  array review example" src="https://github.com/majimmy88/travel-planner/travel-planner-example.png">
+![alt text](https://github.com/majimmy88/travel-planner/blob/travel-planner-example.png?raw=true)
+
 ## Available Scripts
 
 In the project directory, you can run:
