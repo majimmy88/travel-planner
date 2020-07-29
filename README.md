@@ -1,4 +1,5 @@
-![alt text](https://github.com/majimmy88/travel-planner/blob/travel-planner-example.png?raw=true)
+![alt text](https://github.com/majimmy88/travel-planner/blob/master/travel-planner-example.png?raw=true)
+
 
 ## Available Scripts
 
