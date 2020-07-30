@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
+import SAN_FRANCISCO_CENTER from '../const/sf_center';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class Map extends Component {
   static defaultProps = {
-    center: {
-      lat: 37.77,
-      lng: -122.43
-    },
     zoom: 13
   };
 
@@ -18,7 +15,7 @@ class Map extends Component {
       <div style={{ height: '50vh', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}}
-          defaultCenter={this.props.center}
+          defaultCenter={SAN_FRANCISCO_CENTER}
           defaultZoom={this.props.zoom}
         >
           <AnyReactComponent
