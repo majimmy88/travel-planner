@@ -7,8 +7,6 @@ import ActivitiesList from "./components/activities-list.component";
 import EditActivity from "./components/edit-activity.component";
 import CreateActivty from "./components/create-activity.component";
 import CreateUser from "./components/create-user.component";
-// import Map from "./components/map.component";
-import SearchBox from "./components/search-box.component";
 
 function App() {
   return (
@@ -20,7 +18,6 @@ function App() {
           <Route path="/edit/:id" component={EditActivity} />
           <Route path="/create" component={CreateActivty} />
           <Route path="/user" component={CreateUser} />
-          <Route path="/searchbox" component={SearchBox} />
         </div>
     </Router>
   );

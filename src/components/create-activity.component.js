@@ -3,6 +3,23 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import Map from "./map.component";
 import "react-datepicker/dist/react-datepicker.css";
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  display:flex;
+
+`;
+
+const FormWrapper = styled.div`
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  padding: 20px;
+`;
+
+const MapWrapper = styled.div`
+`;
 
 export default class CreateActivity extends Component {
   constructor(props) {
@@ -89,69 +106,73 @@ export default class CreateActivity extends Component {
 
   render() {
     return (
-    <div>
-      <h3>Create New Activity Log</h3>
-      <Map />
-      <form onSubmit={this.onSubmit}>
-        <div className="form-group">
-          <label>Username: </label>
-          <select ref="userInput"
-              required
-              className="form-control"
-              value={this.state.username}
-              onChange={this.onChangeUsername}>
-              {
-                this.state.users.map(function(user) {
-                  return <option
-                    key={user}
-                    value={user}>{user}
-                    </option>;
-                })
-              }
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Location: </label>
-          <input  type="text"
-              required
-              className="form-control"
-              value={this.state.location}
-              onChange={this.onChangeLocation}
-              />
-        </div>
-        <div className="form-group">
-          <label>Description: </label>
-          <input  type="text"
-              required
-              className="form-control"
-              value={this.state.description}
-              onChange={this.onChangeDescription}
-              />
-        </div>
-        <div className="form-group">
-          <label>Duration (in minutes): </label>
-          <input
-              type="text"
-              className="form-control"
-              value={this.state.duration}
-              onChange={this.onChangeDuration}
-              />
-        </div>
-        <div className="form-group">
-          <label>Date: </label>
-          <div>
-            <DatePicker
-              selected={this.state.date}
-              onChange={this.onChangeDate}
-            />
-          </div>
-        </div>
+      <Wrapper>
+        <FormWrapper>
+          <h3>Create New Activity Log</h3>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label>Username: </label>
+              <select ref="userInput"
+                  required
+                  className="form-control"
+                  value={this.state.username}
+                  onChange={this.onChangeUsername}>
+                  {
+                    this.state.users.map(function(user) {
+                      return <option
+                        key={user}
+                        value={user}>{user}
+                        </option>;
+                    })
+                  }
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Location: </label>
+              <input  type="text"
+                  required
+                  className="form-control"
+                  value={this.state.location}
+                  onChange={this.onChangeLocation}
+                  />
+            </div>
+            <div className="form-group">
+              <label>Description: </label>
+              <input  type="text"
+                  required
+                  className="form-control"
+                  value={this.state.description}
+                  onChange={this.onChangeDescription}
+                  />
+            </div>
+            <div className="form-group">
+              <label>Duration (in minutes): </label>
+              <input
+                  type="text"
+                  className="form-control"
+                  value={this.state.duration}
+                  onChange={this.onChangeDuration}
+                  />
+            </div>
+            <div className="form-group">
+              <label>Date: </label>
+              <div>
+                <DatePicker
+                  selected={this.state.date}
+                  onChange={this.onChangeDate}
+                />
+              </div>
+            </div>
 
-        <div className="form-group">
-          <input type="submit" value="Create Activity Log" className="btn btn-primary" />
-        </div>
-      </form>
-    </div>
+            <div className="form-group">
+              <input type="submit" value="Create Activity Log" className="btn btn-primary" />
+            </div>
+          </form>
+        </FormWrapper>
+        <MapWrapper>
+          <Map />
+        </MapWrapper>
+      </Wrapper>
     )
   }
 }
