@@ -8,7 +8,7 @@ import EditActivity from "./components/edit-activity.component";
 import CreateActivty from "./components/create-activity.component";
 import CreateUser from "./components/create-user.component";
 // import Map from "./components/map.component";
-import SearchBox from "./components/searchbox.component";
+import SearchBox from "./components/search-box.component";
 
 function App() {
   return (

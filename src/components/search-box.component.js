@@ -9,7 +9,7 @@ import GoogleMap from './google-map';
 import SearchBox from './searchbox';
 
 // consts
-import LOS_ANGELES_CENTER from '../const/la_center';
+import SAN_FRANCISCO_CENTER from '../const/sf_center';
 
 class Searchbox extends Component {
   constructor(props) {
@@ -44,7 +44,7 @@ class Searchbox extends Component {
         {mapApiLoaded && <SearchBox map={mapInstance} mapApi={mapApi} addplace={this.addPlace} />}
         <GoogleMap
           defaultZoom={10}
-          defaultCenter={LOS_ANGELES_CENTER}
+          defaultCenter={SAN_FRANCISCO_CENTER}
           bootstrapURLKeys={{
             key: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
             libraries: ['places', 'geometry'],
