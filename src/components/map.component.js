@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import SearchBox from './searchbox';
 import SAN_FRANCISCO_CENTER from '../const/sf_center';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+// const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class Map extends Component {
 
@@ -39,7 +39,7 @@ class Map extends Component {
   render({places, mapApiLoaded, mapInstance, mapApi } = this.state) {
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: '40vh', width: '50vh' }}>
+      <div style={{ height: '50vh', width: '90vh' }}>
         {mapApiLoaded && (<SearchBox
           map={mapInstance}
           mapApi={mapApi}
