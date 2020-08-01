@@ -56,6 +56,9 @@ export default class CreateActivity extends Component {
         console.log(error);
       })
   }
+  componentWillUnmount() {
+
+  }
 
   onChangeUsername(e) {
     this.setState({
@@ -101,7 +104,7 @@ export default class CreateActivity extends Component {
     axios.post('http://localhost:5500/activities/add', activity)
       .then(res => console.log(res.data));
 
-    window.location = '/';
+    // window.location = '/';
   }
 
   render() {
