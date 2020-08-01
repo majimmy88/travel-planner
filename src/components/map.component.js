@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
+import isEmpty from 'lodash.isempty';
 import SearchBox from './searchbox';
+import Marker from './marker'
 import SAN_FRANCISCO_CENTER from '../const/sf_center';
 
 // const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -45,18 +47,22 @@ class Map extends Component {
           mapApi={mapApi}
           addplace={this.addPlace}
           />)}
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`, libraries: ['places', 'geometry']}}
-          defaultCenter={SAN_FRANCISCO_CENTER}
-          defaultZoom={this.props.zoom}
-          yesIWantToUseGoogleMapApiInternals
-          onGoogleApiLoaded={({ map, maps }) => this.handleApiLoaded(map, maps)}
-        >
-          {/* <AnyReactComponent
-            lat={37.7749}
-            lng={-122.43}
-            text="You are here"
-          /> */}
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`, libraries: ['places', 'geometry']}}
+        defaultCenter={SAN_FRANCISCO_CENTER}
+        defaultZoom={this.props.zoom}
+        yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) => this.handleApiLoaded(map, maps)}
+      >
+      {!isEmpty(places)
+        && places.map((place) => (
+          <Marker
+            key={place.id}
+            text={place.name}
+            lat={place.geometry.location.lat()}
+            lng={place.geometry.location.lng()}
+          />
+            ))}
         </GoogleMapReact>
       </div>
     );
