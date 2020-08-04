@@ -38,7 +38,8 @@ export default class CreateActivity extends Component {
       description: '',
       duration: 0,
       date: new Date(),
-      users: []
+      users: [],
+      renderMap: true
     }
   }
 
@@ -57,7 +58,7 @@ export default class CreateActivity extends Component {
       })
   }
   componentWillUnmount() {
-
+    this.setState({renderMap: false});
   }
 
   onChangeUsername(e) {
@@ -104,7 +105,7 @@ export default class CreateActivity extends Component {
     axios.post('http://localhost:5500/activities/add', activity)
       .then(res => console.log(res.data));
 
-    // window.location = '/';
+    window.location = '/';
   }
 
   render() {
@@ -173,7 +174,7 @@ export default class CreateActivity extends Component {
           </form>
         </FormWrapper>
         <MapWrapper>
-          <Map />
+          {this.state.renderMap ? <Map />: null}
         </MapWrapper>
       </Wrapper>
     )
