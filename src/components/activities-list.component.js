@@ -1,27 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-
-const Activity = props => (
-  <tr>
-    <td>{props.activity.location}</td>
-    <td>{props.activity.description}</td>
-    <td>{props.activity.duration}</td>
-    <td>{props.activity.date.substring(0,10)}</td>
-    <td>{props.activity.username}</td>
-    <td>
-      <Link to={"/edit/"+props.activity._id}>edit</Link> | <a href="#" onClick={() => { props.deleteActivity(props.activity._id) }}>delete</a>
-    </td>
-  </tr>
-)
+import Activity from './activity-component'
 
 export default class ActivitiesList extends Component {
   constructor(props) {
     super(props);
 
-    this.deleteActivity = this.deleteActivity.bind(this)
-
     this.state = {activities: []};
+
+    this.deleteActivity = this.deleteActivity.bind(this)
   }
 
   componentDidMount() {
