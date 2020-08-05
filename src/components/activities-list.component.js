@@ -44,6 +44,9 @@ export default class ActivitiesList extends Component {
           <thead className="thead-light">
             <tr>
               <th>Location</th>
+                <button type="button">
+                Name
+                </button>
               <th>Description</th>
               <th>Duration</th>
               <th>Date</th>
