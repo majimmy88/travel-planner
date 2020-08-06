@@ -49,11 +49,26 @@ export default class ActivitiesList extends Component {
                                 Location
                             </button>
                         </th>
-
-                        <th>Description</th>
-                        <th>Duration</th>
-                        <th>Date</th>
-                        <th>Username</th>
+                        <th>
+                            <button type="button" onClick={() => this.setState({ sortedField: 'location' })}>
+                                Description
+                            </button>
+                        </th>
+                        <th>
+                            <button type="button" onClick={() => this.setState({ sortedField: 'location' })}>
+                                Duration
+                            </button>
+                        </th>
+                        <th>
+                            <button type="button" onClick={() => this.setState({ sortedField: 'location' })}>
+                                Date
+                            </button>
+                        </th>
+                        <th>
+                            <button type="button" onClick={() => this.setState({ sortedField: 'location' })}>
+                                Username
+                            </button>
+                        </th>
                         <th>Actions</th>
                     </tr>
                 </thead>
