@@ -5,9 +5,10 @@ import Activity from './activity-component'
 export default class ActivitiesList extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {activities: []};
-
+        this.state = {
+            activities: [],
+            sortedField: null,
+        };
         this.deleteActivity = this.deleteActivity.bind(this)
     }
 
@@ -43,7 +44,12 @@ export default class ActivitiesList extends Component {
             <table className="table">
                 <thead className="thead-light">
                     <tr>
-                        <th>Location</th>
+                        <th>
+                            <button type="button" onClick={() => this.setState({ sortedField: 'location' })}>
+                                Location
+                            </button>
+                        </th>
+
                         <th>Description</th>
                         <th>Duration</th>
                         <th>Date</th>
