@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Activity from './activity-component'
 
+// const requestSort = (key) => {
+//     let direction = 'ascending';
+//     if( sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending'){
+//         direction = 'decending';
+//     }
+//     setSortConfig({ key, direction });
+// };
+
+
+
 export default class ActivitiesList extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +46,7 @@ export default class ActivitiesList extends Component {
         return <Activity activity={currentactivity} deleteActivity={this.deleteActivity} key={currentactivity._id}/>;
         })
     }
+
 
     render() {
         return (
