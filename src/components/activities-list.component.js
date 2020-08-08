@@ -47,6 +47,14 @@ export default class ActivitiesList extends Component {
         };
         this.deleteActivity = this.deleteActivity.bind(this)
     }
+    const { items, requestSort, sortConfig } = useSortableData(props.products);
+
+    // const getClassNamesFor = (name) => {
+    //     if (!sortConfig) {
+    //       return;
+    //     }
+    //     return sortConfig.key === name ? sortConfig.direction : undefined;
+    //   };
 
     componentDidMount() {
         axios.get('http://localhost:5500/activities/')
