@@ -47,7 +47,7 @@ export default class ActivitiesList extends Component {
         };
         this.deleteActivity = this.deleteActivity.bind(this)
     }
-    const { items, requestSort, sortConfig } = useSortableData(props.products);
+    // const { items, requestSort, sortConfig } = useSortableData(props.products);
 
     // const getClassNamesFor = (name) => {
     //     if (!sortConfig) {
