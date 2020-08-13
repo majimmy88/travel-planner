@@ -36,25 +36,23 @@ const useSortableData = (items, config = null) => {
     return { items: sortedItems, requestSort, sortConfig };
   };
 
-
-
 export default class ActivitiesList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             activities: [],
+            currentSort: 'default',
             sortedField: null,
         };
         this.deleteActivity = this.deleteActivity.bind(this)
-    }
-    // const { items, requestSort, sortConfig } = useSortableData(props.products);
-
-    // const getClassNamesFor = (name) => {
-    //     if (!sortConfig) {
-    //       return;
-    //     }
-    //     return sortConfig.key === name ? sortConfig.direction : undefined;
-    //   };
+    };
+    const { items, requestSort, sortConfig } = useSortableData(this.state.activities);
+    const getClassNamesFor = (name) => {
+      if (!sortConfig) {
+        return;
+      }
+      return sortConfig.key === name ? sortConfig.direction : undefined;
+    };
 
     componentDidMount() {
         axios.get('http://localhost:5500/activities/')
@@ -90,7 +88,11 @@ export default class ActivitiesList extends Component {
                 <thead className="thead-light">
                     <tr>
                         <th>
-                            <button type="button" onClick={() => this.setState({ sortedField: 'location' })}>
+                            <button
+                            type="button"
+                            onClick={() => this.setState({ sortedField: 'location'})}
+                            className={getClassNamesFor('location')}
+                            >
                                 Location
                             </button>
                         </th>
@@ -124,4 +126,4 @@ export default class ActivitiesList extends Component {
         </div>
         )
     }
-}
+};
