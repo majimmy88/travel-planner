@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Activity from './activity-component'
 
+
+
 export default class ActivitiesList extends Component {
     constructor(props) {
         super(props);
@@ -10,6 +12,7 @@ export default class ActivitiesList extends Component {
             sortConfig: null,
         };
         this.deleteActivity = this.deleteActivity.bind(this)
+        this.requestSort = this.requestSort.bind(this)
     };
 
     componentDidMount() {
@@ -37,6 +40,13 @@ export default class ActivitiesList extends Component {
         })
     }
 
+    requestSort(key) {
+        let direction = 'ascending';
+        if (this.state.sortConfig.key === key && this.state.sortConfig.direction === 'ascending') {
+          direction = 'descending';
+        }
+        this.setState({sortConfig: { key, direction }})
+    }
 
     render() {
         let sortedActivities = [...this.state.activities];
@@ -51,6 +61,14 @@ export default class ActivitiesList extends Component {
                 return 0;
               });
         }
+
+        const getClassNamesFor = (name) => {
+            if (!this.state.sortConfig) {
+              return;
+            }
+            return this.state.sortConfig.key === name ? this.state.sortConfig.direction : undefined;
+          };
+
         return (
         <div>
             <h3>Logged Activities</h3>
@@ -58,31 +76,42 @@ export default class ActivitiesList extends Component {
                 <thead className="thead-light">
                     <tr>
                         <th>
-                            <button
-                            type="button"
-                            onClick={() => this.setState({ sortedField: 'location'})}
-                            // className={getClassNamesFor('location')}
+                            <button type="button"
+                                onClick={() => this.requestSort('location')}
+                                className={getClassNamesFor('location')}
                             >
                                 Location
                             </button>
                         </th>
                         <th>
-                            <button type="button" onClick={() => this.setState({ sortedField: 'description' })}>
+                            <button type="button"
+                                onClick={() => this.requestSort('description')}
+                                className={getClassNamesFor('description')}
+                            >
                                 Description
                             </button>
                         </th>
                         <th>
-                            <button type="button" onClick={() => this.setState({ sortedField: 'duration' })}>
+                            <button type="button"
+                                onClick={() => this.requestSort('duration')}
+                                className={getClassNamesFor('duration')}
+                            >
                                 Duration
                             </button>
                         </th>
                         <th>
-                            <button type="button" onClick={() => this.setState({ sortedField: 'date' })}>
+                            <button type="button"
+                                onClick={() => this.requestSort('date')}
+                                className={getClassNamesFor('date')}
+                            >
                                 Date
                             </button>
                         </th>
                         <th>
-                            <button type="button" onClick={() => this.setState({ sortedField: 'username' })}>
+                            <button type="button"
+                                onClick={() => this.requestSort('username')}
+                                className={getClassNamesFor('username')}
+                            >
                                 Username
                             </button>
                         </th>
