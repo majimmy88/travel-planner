@@ -7,7 +7,7 @@ export default class ActivitiesList extends Component {
         super(props);
         this.state = {
             activities: [],
-            sortedField: null,
+            sortConfig: null,
         };
         this.deleteActivity = this.deleteActivity.bind(this)
     };
@@ -39,6 +39,18 @@ export default class ActivitiesList extends Component {
 
 
     render() {
+        let sortedActivities = [...this.state.activities];
+        if(this.state.sortConfig !== null) {
+            sortedActivities.sort((a, b) => {
+                if (a[this.state.sortConfig.key] < b[this.state.sortConfig.key]) {
+                  return this.state.sortConfig.direction === 'ascending' ? -1 : 1;
+                }
+                if (a[this.state.sortConfig.key] > b[this.state.sortConfig.key]) {
+                  return this.state.sortConfig.direction === 'ascending' ? 1 : -1;
+                }
+                return 0;
+              });
+        }
         return (
         <div>
             <h3>Logged Activities</h3>
@@ -49,6 +61,7 @@ export default class ActivitiesList extends Component {
                             <button
                             type="button"
                             onClick={() => this.setState({ sortedField: 'location'})}
+                            // className={getClassNamesFor('location')}
                             >
                                 Location
                             </button>
