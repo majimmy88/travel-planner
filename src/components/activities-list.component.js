@@ -42,13 +42,11 @@ export default class ActivitiesList extends Component {
 
     requestSort(key) {
         let direction = 'ascending';
-        if (this.state.sortConfig.key === key && this.state.sortConfig.direction === 'ascending') {
+        if (this.state.sortConfig && this.state.sortConfig.key === key && this.state.sortConfig.direction === 'ascending') {
           direction = 'descending';
         }
-        this.setState({sortConfig: { key, direction }})
-    }
-
-    render() {
+        this.setState({sortConfig:{ key, direction }})
+        console.log(this.state.sortConfig)
         let sortedActivities = [...this.state.activities];
         if(this.state.sortConfig !== null) {
             sortedActivities.sort((a, b) => {
@@ -61,14 +59,9 @@ export default class ActivitiesList extends Component {
                 return 0;
               });
         }
-
-        const getClassNamesFor = (name) => {
-            if (!this.state.sortConfig) {
-              return;
-            }
-            return this.state.sortConfig.key === name ? this.state.sortConfig.direction : undefined;
-          };
-
+        this.setState({activities:sortedActivities})
+    }
+    render() {
         return (
         <div>
             <h3>Logged Activities</h3>
@@ -78,7 +71,6 @@ export default class ActivitiesList extends Component {
                         <th>
                             <button type="button"
                                 onClick={() => this.requestSort('location')}
-                                className={getClassNamesFor('location')}
                             >
                                 Location
                             </button>
@@ -86,7 +78,6 @@ export default class ActivitiesList extends Component {
                         <th>
                             <button type="button"
                                 onClick={() => this.requestSort('description')}
-                                className={getClassNamesFor('description')}
                             >
                                 Description
                             </button>
@@ -94,7 +85,6 @@ export default class ActivitiesList extends Component {
                         <th>
                             <button type="button"
                                 onClick={() => this.requestSort('duration')}
-                                className={getClassNamesFor('duration')}
                             >
                                 Duration
                             </button>
@@ -102,7 +92,6 @@ export default class ActivitiesList extends Component {
                         <th>
                             <button type="button"
                                 onClick={() => this.requestSort('date')}
-                                className={getClassNamesFor('date')}
                             >
                                 Date
                             </button>
@@ -110,7 +99,6 @@ export default class ActivitiesList extends Component {
                         <th>
                             <button type="button"
                                 onClick={() => this.requestSort('username')}
-                                className={getClassNamesFor('username')}
                             >
                                 Username
                             </button>
