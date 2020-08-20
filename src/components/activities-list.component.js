@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Activity from './activity-component'
+import styled from 'styled-components';
 
+const Button = styled.button`
+    border:none;
 
+`;
 
 export default class ActivitiesList extends Component {
     constructor(props) {
@@ -69,39 +73,39 @@ export default class ActivitiesList extends Component {
                 <thead className="thead-light">
                     <tr>
                         <th>
-                            <button type="button"
+                            <Button type="button"
                                 onClick={() => this.requestSort('location')}
                             >
                                 Location
-                            </button>
+                            </Button>
                         </th>
                         <th>
-                            <button type="button"
+                            <Button type="button"
                                 onClick={() => this.requestSort('description')}
                             >
                                 Description
-                            </button>
+                            </Button>
                         </th>
                         <th>
-                            <button type="button"
+                            <Button type="button"
                                 onClick={() => this.requestSort('duration')}
                             >
                                 Duration
-                            </button>
+                            </Button>
                         </th>
                         <th>
-                            <button type="button"
+                            <Button type="button"
                                 onClick={() => this.requestSort('date')}
                             >
                                 Date
-                            </button>
+                            </Button>
                         </th>
                         <th>
-                            <button type="button"
+                            <Button type="button"
                                 onClick={() => this.requestSort('username')}
                             >
                                 Username
-                            </button>
+                            </Button>
                         </th>
                         <th>Actions</th>
                     </tr>
