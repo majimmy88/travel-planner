@@ -76,35 +76,35 @@ export default class ActivitiesList extends Component {
                             <Button type="button"
                                 onClick={() => this.requestSort('location')}
                             >
-                                Location
+                                <u>Location</u>
                             </Button>
                         </th>
                         <th>
                             <Button type="button"
                                 onClick={() => this.requestSort('description')}
                             >
-                                Description
+                                <u>Description</u>
                             </Button>
                         </th>
                         <th>
                             <Button type="button"
                                 onClick={() => this.requestSort('duration')}
                             >
-                                Duration
+                                <u>Duration</u>
                             </Button>
                         </th>
                         <th>
                             <Button type="button"
                                 onClick={() => this.requestSort('date')}
                             >
-                                Date
+                                <u>Date</u>
                             </Button>
                         </th>
                         <th>
                             <Button type="button"
                                 onClick={() => this.requestSort('username')}
                             >
-                                Username
+                                <u>Username</u>
                             </Button>
                         </th>
                         <th>Actions</th>
