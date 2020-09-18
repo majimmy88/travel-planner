@@ -7,19 +7,8 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display:flex;
-
 `;
 
-const FormWrapper = styled.div`
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  width: 35%;
-  padding: 20px;
-`;
-
-const MapWrapper = styled.div`
-`;
 
 export default class CreateActivity extends Component {
   constructor(props) {
@@ -110,8 +99,8 @@ export default class CreateActivity extends Component {
 
   render() {
     return (
-      <Wrapper>
-        <FormWrapper>
+      <div class="d-flex p-2">
+        <div class="container">
           <h3>Create New Activity Log</h3>
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
@@ -172,11 +161,11 @@ export default class CreateActivity extends Component {
               <input type="submit" value="Create Activity Log" className="btn btn-primary" />
             </div>
           </form>
-        </FormWrapper>
-        <MapWrapper>
+        </div>
+        <div>
           {this.state.renderMap ? <Map />: null}
-        </MapWrapper>
-      </Wrapper>
+        </div>
+      </div>
     )
   }
 }
