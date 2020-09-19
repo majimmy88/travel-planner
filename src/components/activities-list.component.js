@@ -69,7 +69,7 @@ export default class ActivitiesList extends Component {
         return (
         <div>
             <h3>Logged Activities</h3>
-            <table className="table">
+            <table className="table table-striped">
                 <thead className="thead-light">
                     <tr>
                         <th>
